@@ -15,6 +15,8 @@ app.use('/api/profile', require('./routes/api/profile'))
 app.use('/api/posts', require('./routes/api/posts'))
 app.use('/api/auth', require('./routes/api/auth'))
 
+/*"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"*/
+
 //Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
     //Set static folder
