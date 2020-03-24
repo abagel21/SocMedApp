@@ -4,7 +4,6 @@ import Moment from 'react-moment'
 
 const ProfileExperience = ({experience : {company, title, location, current, to, from, description}}) => {
     console.log('Company = ' + company)
-    console.log(experience)
     return (
         <div>
             <h3 className="text-dark">{company}</h3>
