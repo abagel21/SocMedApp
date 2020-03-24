@@ -47,8 +47,6 @@ const Profile = ({
               {profile.experience.length > 0 ? (
                 <Fragment>
                   {profile.experience.map((experience, index) => {
-                    console.log(experience);
-                    console.log(experience.company)
                     if(typeof experience === 'object') {
                       experience = [experience];
                     }

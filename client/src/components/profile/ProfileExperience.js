@@ -4,21 +4,22 @@ import Moment from 'react-moment'
 
 const ProfileExperience = ({experience }) => {
     console.log(experience)
+    const temp = experience[0];
     {/*company, title, location, current, to, from, description*/}
     return (
         <div>
-            <h3 className="text-dark">{experience.company}</h3>
+            <h3 className="text-dark">{temp.company}</h3>
             <p>
-                <Moment format = 'YYYY/MM/DD'>{experience.from}</Moment> - {!experience.to ? ' Now' : <Moment format = 'YYYY/MM/DD'>{experience.to}</Moment>}
+                <Moment format = 'YYYY/MM/DD'>{temp.from}</Moment> - {!temp.to ? ' Now' : <Moment format = 'YYYY/MM/DD'>{temp.to}</Moment>}
             </p>
             <p>
-                <strong>Location: </strong> {experience.location}
+                <strong>Location: </strong> {temp.location}
             </p>
             <p>
-                <strong>Position: </strong> {experience.title}
+                <strong>Position: </strong> {temp.title}
             </p>
             <p>
-                <strong>Description: </strong> {experience.description}
+                <strong>Description: </strong> {temp.description}
             </p>
         </div>
     )
