@@ -46,13 +46,13 @@ const Profile = ({
               <h2 className="text-primary">Experience</h2>
               {profile.experience.length > 0 ? (
                 <Fragment>
-                  {profile.experience.map(experience => {
+                  {profile.experience.map((experience, index) => {
                     if(typeof experience === 'object') {
                       experience = [experience];
                     }
                     return (
                     <ProfileExperience
-                      key={experience._id}
+                      key={/*experience._id*/index}
                       experience={experience}
                     />
                   )})}
@@ -65,13 +65,13 @@ const Profile = ({
               <h2 className="text-primary">Education</h2>
               {profile.education.length > 0 ? (
                 <Fragment>
-                  {profile.education.map(education => {
+                  {profile.education.map((education, index) => {
                     if(typeof education === 'object') {
                       education = [education];
                     }
                     return (
                     <ProfileEducation
-                      key={education._id}
+                      key={/*education._id*/index}
                       education={education}
                     />
                   )})}

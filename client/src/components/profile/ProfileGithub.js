@@ -12,8 +12,8 @@ const ProfileGithub = ({username, getGithubRepos, repos}) => {
         <div className = 'profile-github'>
             <h2 className="text-primary my-1">Github Repos</h2>
             {repos === null || repos.length === 0 || repos.html ===null ? <h4>User has not linked their Github</h4> : (
-                repos.map(repo => (
-                    <div key = {repo._id} className = 'repo bg-white p-1 my-1' >
+                repos.map((repo, index) => (
+                    <div key = {/*repo._id*/ index} className = 'repo bg-white p-1 my-1' >
                         <div>
                             <h4>
                                 <a href={repo.html_url} target= '_blank' rel = 'noopener noreferrer'>{repo.name}</a>
