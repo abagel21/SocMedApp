@@ -1,0 +1,6 @@
+{
+    "mongoURI": "mongodb+srv://abagel:Alexbaby6414159@cluster0-c1jmo.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "heehee",
+    "githubClient": "48ef21f1846a42fbcbde",
+    "githubSecret": "fc1188e58a4838dc01d9d663e7964dfbc50ee1a1"
+}
