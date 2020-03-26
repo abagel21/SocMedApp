@@ -5,21 +5,21 @@ import { createChat, sendChat, getChat } from "../../actions/chat";
 import Spinner from "../layout/Spinner";
 import ChatHeader from "./ChatHeader";
 
-const Chat = ({ createChat, sendChat, getChat, auth: { user } }) => {
+const Chat = ({ createChat, sendChat, getChat, auth: { user }, chats }) => {
   const [chat, setChat] = useState({});
   const [text, setText] = useState('')
   useEffect(() => {
   
     getChat();
     if(user) {
-      console.log('setting chat fired')
-    setChat(user.chats[0])
+
+    setChat(chat[0])
     }
-    console.log('useffect ended')
+
   }, [getChat]);
   useEffect(() => {
     if(user) {
-      console.log('setting chat fired')
+
     setChat(user.chats[0])
     }
   }, [user, setChat])
@@ -27,9 +27,8 @@ const Chat = ({ createChat, sendChat, getChat, auth: { user } }) => {
     return <Spinner />
   }
   
-  const chats = user.chats;
   
-
+  
 
   let temp = {};
   const onClick = async (id) => {
@@ -127,7 +126,7 @@ const Chat = ({ createChat, sendChat, getChat, auth: { user } }) => {
                   className="lead"
                   style={{ display: "inline", paddingLeft: "15px" }}
                 >
-                  {user && chats && chats.length> 0 && chat.name}
+                  {user && chats && chats.length> 0 && chats[0].name}
                 </h4>
               </div>
               
@@ -171,41 +170,40 @@ const Chat = ({ createChat, sendChat, getChat, auth: { user } }) => {
             className="col-9 bg-light text-center rounded-right"
             style={{ paddingRight: "0", paddingLeft: "0", borderTop: "none" }}
           >
-            <div className="row">
-              <form style={{ paddingLeft: "15px", width: "90%" }} onSubmit = {async e => {
+
+              <form style={{width: "100%", "display" : "inline" }} onSubmit = {async e => {
                 e.preventDefault();
                 const holder =(await sendChat(chat._id, {text}))
                 const aholder = holder.sendingChat
-                console.log(holder)
-                console.log(aholder)
                 setChat(aholder)
                 setText('')
                 }}>
                 <input
                   type="text"
                   placeholder="Write your message here"
-                  className="justify-content-start"
+                  className="justify-content-start float-left"
                   value = {text}
                   onChange = {e => setText(e.target.value)}
                   style={{
                     display: "inline",
-                    width: "100%",
+                    width: "96%",
                     padding: "0.4rem",
                     fontSize: "1.2rem",
                     border: "1px solid #ccc"
                   }}
-                />
-              
-              <i
-                className="fas fa-paper-plane col-1 submit"
+                /> <i
+                className="fas fa-paper-plane"
                 style={{
                   verticalAlign: "middle",
                   display: "inline",
                   lineHeight: "2.5"
                 }}
               ></i>
+              
+              
               </form>
-            </div>
+
+
           </div>
         </div>
       </div>
@@ -218,10 +216,12 @@ Chat.propTypes = {
   sendChat: PropTypes.func.isRequired,
   getChat: PropTypes.func.isRequired,
   user: PropTypes.object,
+  chats : PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  chats : state.chat.chats
 });
 
 export default connect(mapStateToProps, {

@@ -14,13 +14,14 @@ export const createChat = (userId) => async dispatch => {
             }
         }
 
-        const res = await axios.put(`/api/users/chat/${userId}`, null, config);
+        const res = await axios.put(`/api/users/chat/${userId}`, {userId}, config);
+        console.log(res.data)
         dispatch({
             type: ADD_CHAT,
             payload: res.data
         })
-        dispatch(setAlert('Chat Created', 'success'))
     } catch (err) {
+        console.log(err)
         dispatch({
             type: CHAT_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
@@ -34,7 +35,8 @@ export const getChat = () => async dispatch => {
         setAuthToken(localStorage.token)
     }
     try {
-        const res = axios.get('/api/users/chat')
+        const res = await axios.get("/api/users/chat")
+        console.log(res.data)
         dispatch({
             type: GET_CHAT,
             payload: res.data

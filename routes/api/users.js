@@ -65,6 +65,19 @@ router.post('/', [check('name', 'Name is required').not().isEmpty(), check('emai
 
 });
 
+//get chats
+router.get('/chat', auth, async(req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+
+        const chats = user.chats;
+        res.send(chats)
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+})
+
 //create chat
 router.put('/chat/:userId', auth, async(req, res) => {
     try {
@@ -96,21 +109,7 @@ router.put('/chat/:userId', auth, async(req, res) => {
         await receivingUser.save()
         const chat1 = user.chats;
         const chat2 = receivingUser.chats;
-        res.json({ chat1 })
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
-})
-
-//get chats
-router.get('/chat', auth, async(req, res) => {
-    try {
-        const user = await User.findById(req.user.id);
-
-        const chats = user.chats;
-
-        res.json(chats)
+        res.json(receivingUser.chats)
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');

@@ -27,7 +27,6 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
     e.preventDefault();
     const profileHolder = profiles.map(profile => profile.user.name)
     let placeholder = profiles.filter(profile => profile.user.name.substring(0, e.target.value.length).toUpperCase() === e.target.value.toUpperCase())
-    setRenderedProfiles({renderedProfiles : ['FUCK', 'YOU']})
     setRenderedProfiles({renderedProfiles : placeholder})
     setText(e.target.value)
   }
