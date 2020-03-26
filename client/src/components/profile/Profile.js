@@ -9,12 +9,14 @@ import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
 import ProfileGithub from "./ProfileGithub.js";
+import {createChat} from '../../actions/chat'
 
 const Profile = ({
   match,
   getProfileById,
   auth,
-  profile: { profile, loading }
+  profile: { profile, loading },
+  createChat
 }) => {
   useEffect(() => {
     getProfileById(match.params.id);
@@ -31,6 +33,11 @@ const Profile = ({
         <Fragment>
           <Link to="/profiles" className="btn btn-light">
             Back To Profiles
+          </Link>
+          <Link to = "/chat" className = 'btn btn-primary' onClick = {e => {
+            createChat(profile.user._id);
+          }}>
+            Chat with this Developer
           </Link>
           {auth.isAuthenticated &&
             auth.loading === false &&
@@ -93,7 +100,8 @@ const Profile = ({
 Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  createChat : PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -101,4 +109,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default connect(mapStateToProps, { getProfileById, createChat })(Profile);

@@ -3,7 +3,6 @@ import {Route, Switch } from 'react-router-dom'
 
 import Register from "../auth/Register";
 import Login from "../auth/Login";
-import Alert from "../layout/Alert";
 import Dashboard from "../dashboard/Dashboard";
 import PrivateRoute from "../routing/PrivateRoute";
 import CreateProfile from "../profile-forms/CreateProfile";
@@ -15,11 +14,11 @@ import Profile from "../profile/Profile";
 import Posts from "../Posts/Posts";
 import Post from '../Post/Post'
 import NotFound from '../layout/NotFound'
+import Chat from '../chat/Chat'
 
 const Routes = () => {
     return (
         <section className="container">
-            <Alert />
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />

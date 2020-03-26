@@ -17,6 +17,31 @@ const UserSchema = new mongoose.Schema({
     avatar: {
         type: String
     },
+    chats: [{
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user'
+        },
+        name: {
+            type: String
+        },
+        messages: [{
+            text: {
+                type: String
+            },
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'user'
+            },
+            name: {
+                type: String
+            },
+            date: {
+                type: Date,
+                default: Date.now
+            }
+        }]
+    }],
     date: {
         type: Date,
         default: Date.now

@@ -10,6 +10,9 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Routes from './components/routing/Routes'
+import Alert from "./components/layout/Alert";
+import Chat from './components/chat/Chat'
+import PrivateRoute from './components/routing/PrivateRoute'
 
 
 const App = () => {
@@ -22,8 +25,10 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
+          <Alert />
           <Switch>
           <Route exact path="/" component={Landing}></Route>
+          <PrivateRoute exact path ="/chat" component = {Chat} />
           <Route component = {Routes} />
           </Switch>
         </Fragment>

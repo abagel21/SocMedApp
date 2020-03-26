@@ -30,7 +30,6 @@ const EditProfile = ({ profile : {profile, loading}, createProfile, history, get
   useEffect(() => {
       async function testing() {
       await getCurrentProfile();
-      await setAlert('Test', 'danger');
       setFormData({
           company : loading || !profile.company ? '' : profile.company,
           website : loading || !profile.website ? '' : profile.website,
@@ -44,11 +43,21 @@ const EditProfile = ({ profile : {profile, loading}, createProfile, history, get
           linkedin : loading || !profile.social.linkedin ? '' : profile.social.linkedin,
           youtube : loading || !profile.social.youtube ? '' : profile.social.youtube,
           instagram : loading || !profile.social.instagram ? '' : profile.social.instagram
-      }, [getCurrentProfile, setAlert]);
+      }, );
+      // if(profile.social) {
+      //   setFormData({
+      //     ...formData,
+      //     twitter : loading || !profile.social.twitter ? '' : profile.social.twitter,
+      //     facebook : loading || !profile.social.facebook ? '' : profile.social.facebook,
+      //     linkedin : loading || !profile.social.linkedin ? '' : profile.social.linkedin,
+      //     youtube : loading || !profile.social.youtube ? '' : profile.social.youtube,
+      //     instagram : loading || !profile.social.instagram ? '' : profile.social.instagram
+      //   })
+      // }
     }
     testing();
       // eslint-disable-next-line
-  }, [loading])
+  }, [getCurrentProfile, loading])
 
   const {
     company,
@@ -75,7 +84,7 @@ const EditProfile = ({ profile : {profile, loading}, createProfile, history, get
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Create Your Profile</h1>
+      <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
         profile stand out
