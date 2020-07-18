@@ -1,5 +1,5 @@
 # SocMedApp
-A project created through the course "MERN stack Front to Back" on Udemy by Brad Traversy.
+A project created through the course "MERN Stack Front to Back" on Udemy by Brad Traversy.
 
 ## Skills
 - React
